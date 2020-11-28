@@ -21,31 +21,28 @@ export default class StoryList extends Component {
             response.docs.forEach(document => {
                 if (document.data().approved) {
                     const fetchedStory = {
+                        id: document.id,
                         name: document.data().name,
                         storyText: document.data().story.text
                     };
                     fetchedStories.push(fetchedStory);
                 }
             });
+            this.setState({
+                allStories: fetchedStories,
+            });
         });
 
-        console.log("Fetched stories:")
-        console.log(fetchedStories)
-        this.setState({
-            allStories: fetchedStories,
-        });
+        
     }
 
     render(){
-        console.log("Rendered stories")
-        console.log(this.state.allStories)
         let allStories = this.state.allStories
         return(
             <div>
-                <p>{allStories && allStories.length}</p>
                 <ul>
                     {allStories && allStories.map(story => (
-                        <li>{story.name}: {story.storyText}</li>
+                        <li key={story.id}>{story.name}: {story.storyText}</li>
                     ))}
                 </ul>
             </div>
