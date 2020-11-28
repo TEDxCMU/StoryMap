@@ -1,18 +1,12 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import StoryService from "../services/story.service";
 
-export default class StoryList extends Component {
-    constructor(props) {
-        super(props);
+export default function StoryList() {
+    const [allStories, setAllStories] = useState([]);
 
-        this.state = {
-            allStories: []
-        };
-    }
-
-    componentDidMount(){
-        let allData = StoryService.getAll()
-        var fetchedStories = []
+    useEffect(() => {
+        const allData = StoryService.getAll()
+        const fetchedStories = []
 
         // TODO: In order to get permissions for this, read and write were set to true
         // seems unsafe, we should fix that later
@@ -28,24 +22,19 @@ export default class StoryList extends Component {
                     fetchedStories.push(fetchedStory);
                 }
             });
-            this.setState({
-                allStories: fetchedStories,
-            });
+            setAllStories(fetchedStories);
         });
+    }, [])
 
-        
-    }
-
-    render(){
-        let allStories = this.state.allStories
-        return(
-            <div>
-                <ul>
-                    {allStories && allStories.map(story => (
-                        <li key={story.id}>{story.name}: {story.storyText}</li>
-                    ))}
-                </ul>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <ul>
+                {allStories?.map(({ id, name, storyText }) => (
+                    <li key={id}>
+                        {name}: {storyText}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }
