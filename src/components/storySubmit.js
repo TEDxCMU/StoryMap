@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StoryService from "../services/story.service";
 
-export default function LoginForm() {
+export default function StorySubmit() {
     const [name, setName] = useState("");
     const [city, setCity] = useState("");
     const [prompt, setPrompt] = useState("");
