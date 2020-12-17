@@ -6,6 +6,10 @@ class StoryService {
     getAll() {
         return db;
     }
+
+    add(story) {
+        return db.add(story);
+    }
 }
 
 export default new StoryService();
