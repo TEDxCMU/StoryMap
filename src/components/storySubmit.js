@@ -16,7 +16,9 @@ export default function StorySubmit() {
         city: city,
         // TODO: change this to extract the appx geopoint of the city they selected
         // and add a latLong field
-        story: storyText,
+        story: {
+            text: storyText
+        },
         approved: false
       };
 
