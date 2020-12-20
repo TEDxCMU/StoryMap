@@ -1,18 +1,20 @@
+import { Switch, Route } from 'react-router-dom';
+
 import './App.css';
-import StoryList from "./components/storyList.js";
-import StorySubmit from "./components/storySubmit.js";
-import AdminConsole from "./components/adminConsole.js";
+import Home from './pages/Home';
+import AdminConsole from "./pages/AdminConsole";
 
 function App() {
     return (
         <div className="App">
-            <h1>List of Stories:</h1>
-            <StoryList />
-            <br></br>
-            <h1>Submit a Story:</h1>
-            <StorySubmit />
-            <h1>Admin Console Base Func:</h1>
-            <AdminConsole />
+            <Switch>
+                <Route path="/" exact>
+                    <Home />
+                </Route>
+                <Route path="/admin" exact>
+                    <AdminConsole />
+                </Route>
+            </Switch>
         </div>
     );
 }
