@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import AdminConsole from "./pages/AdminConsole";
+import Login from './pages/Login';
 
 function App() {
     return (
@@ -13,6 +14,9 @@ function App() {
                 </Route>
                 <Route path="/admin" exact>
                     <AdminConsole />
+                </Route>
+                <Route path="/login" exact>
+                    <Login />
                 </Route>
             </Switch>
         </div>
