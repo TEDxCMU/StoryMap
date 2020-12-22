@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import StoryService from "../services/story.service";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
+// import "leaflet/dist/leaflet.css";
 
 const position = [51.505, -0.09]
 
 export default function StoryMapView() {
-    // const [allStories, setAllStories] = useState([]);
     const [allStories, setAllStories] = useState([]);
 
     useEffect(() => {
@@ -24,6 +23,7 @@ export default function StoryMapView() {
                         name: document.data().name,
                         storyText: document.data().story.text
                     };
+                    console.log(document);
                     fetchedStories.push(fetchedStory);
                 }
             });
