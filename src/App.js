@@ -1,6 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
 
-import './App.css';
 import Home from './pages/Home';
 import AdminConsole from "./pages/AdminConsole";
 import Login from './pages/Login';

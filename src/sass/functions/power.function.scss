@@ -1,0 +1,16 @@
+// Exponentation. Helpful with modular scale typography.
+// @param {Number} $base
+// @param {Number} $exponent
+@function power ($base, $exponent){
+    $number: 1;
+    @if $exponent >= 0 {
+        @for $i from 1 through $exponent{
+            $number: $number * $base;
+        }
+    } @else {
+        @for $i from $exponent to 0 {
+            $number: $number / $base;
+        }
+    }
+    @return $number;
+}

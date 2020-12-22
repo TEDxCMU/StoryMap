@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import StoryService from "../services/story.service";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
-// import "leaflet/dist/leaflet.css";
-// import MarkerImage from "../public/logo192.png";
-const position = [51.505, -0.09]
+
+import styles from './StoryMapView.module.scss';
+import StoryService from "../../services/story.service";
+
+const position = [51.505, -0.09];
 
 export default function StoryMapView() {
     const markerIcon = L.icon({
@@ -17,6 +18,7 @@ export default function StoryMapView() {
         // shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
     });
+
     const [allStories, setAllStories] = useState([]);
 
     useEffect(() => {
@@ -47,24 +49,18 @@ export default function StoryMapView() {
     
 
     return (
-        <div>
-
-            <MapContainer center={position} zoom={1} scrollWheelZoom={false}>
-                <TileLayer
+        <MapContainer className={styles.map} center={position} zoom={1} scrollWheelZoom={false}>
+            <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {allStories?.map(({ id, name, storyText, latLong}, index) => (
-                    <Marker position={latLong} key={index} icon={markerIcon}>
+            />
+            {allStories?.map(({ id, name, storyText, latLong}, index) => (
+                <Marker position={latLong} key={index} icon={markerIcon}>
                     <Popup>
                         {name} <br/> {storyText}
                     </Popup>
-                    </Marker>
-                    
-                ))}
-
-                
-            </MapContainer>
-        </div>
+                </Marker>
+            ))}
+        </MapContainer>
     )
 }
