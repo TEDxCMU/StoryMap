@@ -10,7 +10,6 @@ const config = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID,
 };
-console.log(config.apiKey);
 firebase.default.initializeApp(config);
 
 export default firebase.firestore();
