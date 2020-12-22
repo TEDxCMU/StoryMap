@@ -21,6 +21,7 @@ export default function StorySubmit() {
   Geocode.setRegion("en");
 
   const setLocationInfo = (e) => {
+    console.log(e)
     setCity(e);
     Geocode.fromAddress(e).then(
       (response) => {
@@ -40,8 +41,6 @@ export default function StorySubmit() {
       name: name,
       city: city,
       latLong: latLong,
-      // TODO: change this to extract the appx geopoint of the city they selected
-      // and add a latLong field
       story: {
         text: storyText
       },
@@ -69,7 +68,7 @@ export default function StorySubmit() {
               apiKey={apiKey}
               selectProps={{
                 city,
-                onChange: setLocationInfo,
+                onChange: (e) => setLocationInfo(e.label),
                 id: "city",
                 styles: {
                   container: (provided) => ({
