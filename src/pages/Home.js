@@ -1,11 +1,11 @@
 import StoryList from '../components/storyList';
 import StorySubmit from '../components/storySubmit';
-import StoryMapView from '../components/storyMapView';
+import StoryMapView from '../components/StoryMapView/StoryMapView';
 
 export default function Home() {
     return (
         <>
-            <StoryMapView/>
+            <StoryMapView />
             <br></br>
             <h1>List of Stories:</h1>
             <StoryList />
