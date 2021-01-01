@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
+import Footer from '../components/Footer/Footer';
 
 import app from '../firebase';
 
@@ -35,31 +36,34 @@ function Login() {
     };
 
     return (
-        <form>
-            <label htmlFor="email">
-                Email:
-            </label>
-            <input
-                type="text"
-                name="email"
-                autoComplete="email"
-                value={email}
-                onChange={handleEmail}
-            />
-            <label htmlFor="password">
-                Password
-            </label>
-            <input
-                type="password"
-                name="password"
-                autoComplete="password"
-                value={password}
-                onChange={handlePassword}
-            />
-            <button type="submit" onClick={handleLogin}>
-                Log-In
-            </button>
-        </form>
+        <div>
+            <form>
+                <label htmlFor="email">
+                    Email:
+                </label>
+                <input
+                    type="text"
+                    name="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={handleEmail}
+                />
+                <label htmlFor="password">
+                    Password
+                </label>
+                <input
+                    type="password"
+                    name="password"
+                    autoComplete="password"
+                    value={password}
+                    onChange={handlePassword}
+                />
+                <button type="submit" onClick={handleLogin}>
+                    Log-In
+                </button>
+            </form>
+            <Footer />
+        </div>
     );
 }
 

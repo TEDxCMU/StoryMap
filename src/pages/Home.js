@@ -1,6 +1,7 @@
 import StoryList from '../components/storyList';
 import StorySubmit from '../components/storySubmit';
 import StoryMapView from '../components/StoryMapView/StoryMapView';
+import Footer from '../components/Footer/Footer';
 
 export default function Home() {
     return (
@@ -12,6 +13,7 @@ export default function Home() {
             <br></br>
             <h1>Submit a Story:</h1>
             <StorySubmit />
+            <Footer />
         </>
     );
 }
