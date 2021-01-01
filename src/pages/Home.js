@@ -3,7 +3,7 @@ import StorySubmit from '../components/storySubmit';
 import StoryMapView from '../components/StoryMapView/StoryMapView';
 import Footer from '../components/Footer/Footer';
 
-export default function Home() {
+export default function HomePage() {
     return (
         <>
             <StoryMapView />
