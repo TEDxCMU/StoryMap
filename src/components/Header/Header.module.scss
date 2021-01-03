@@ -1,0 +1,30 @@
+@import "../../sass/import";
+
+.logo {
+  width: 100%;
+  height: 100%;
+}
+
+.logo_container {
+  height: $space-2;
+  width: $space-0;
+}
+
+.header_items {
+  display: flex;
+}
+
+.title {
+  font-size: $space-4;
+}
+
+@media screen and (max-width: $viewport__medium) {
+  .logo_container {
+    height: $space-3;
+    width: $space-1;
+  }
+
+  .title {
+    font-size: $space-5;
+  }
+}

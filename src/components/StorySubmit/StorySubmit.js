@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StoryService from "../services/story.service";
+import StoryService from "../../services/story.service";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import {
