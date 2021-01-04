@@ -2,11 +2,8 @@ import { useState } from "react";
 import StoryService from "../../services/story.service";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import {
-  geocodeByAddress,
-  getLatLng,
-  geocodeByPlaceId
-} from "react-google-places-autocomplete";
+import promptList from "../../lib/prompts.js"
+
 
 export default function StorySubmit() {
   const [name, setName] = useState("");
@@ -41,6 +38,7 @@ export default function StorySubmit() {
       name: name,
       city: city,
       latLong: latLong,
+      prompt: prompt,
       story: {
         text: storyText
       },
@@ -79,7 +77,14 @@ export default function StorySubmit() {
               }}
             />
           </div>
-          {/* TODO: Also include a prompt dropdown which can select between the three prompts we have (see notion) */}
+          <div>
+            <label htmlFor='prompt'>Choose a prompt:</label>
+              <select onChange={(e) => setPrompt(e.target.value)}>
+                {promptList?.map((promptStr) => (
+                  <option value={promptStr}>{promptStr}</option>
+                ))}
+              </select>
+          </div>
           <div>
             <label htmlFor='story'>Your Story</label>
             <textarea

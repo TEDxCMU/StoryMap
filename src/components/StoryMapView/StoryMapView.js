@@ -35,6 +35,7 @@ export default function StoryMapView() {
                     const fetchedStory = {
                         id: document.id,
                         name: document.data().name,
+                        prompt: document.data().prompt,
                         storyText: document.data().story.text,
                         latLong: pos
                     };
@@ -54,10 +55,10 @@ export default function StoryMapView() {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {allStories?.map(({ id, name, storyText, latLong}, index) => (
+            {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
                 <Marker position={latLong} key={index} icon={markerIcon}>
                     <Popup>
-                        {name} <br/> {storyText}
+                        <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
                     </Popup>
                 </Marker>
             ))}
