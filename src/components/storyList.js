@@ -17,6 +17,7 @@ export default function StoryList() {
                     const fetchedStory = {
                         id: document.id,
                         name: document.data().name,
+                        prompt: document.data().prompt,
                         storyText: document.data().story.text
                     };
                     fetchedStories.push(fetchedStory);
@@ -29,9 +30,9 @@ export default function StoryList() {
     return (
         <div>
             <ul>
-                {allStories?.map(({ id, name, storyText }) => (
+                {allStories?.map(({ id, name, prompt, storyText }) => (
                     <li key={id}>
-                        {name}: {storyText}
+                        <b>{name}</b>: <i>{prompt}</i> {storyText}
                     </li>
                 ))}
             </ul>

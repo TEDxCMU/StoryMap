@@ -25,6 +25,7 @@ export default function AdminConsole() {
                     const fetchedStory = {
                         id: document.id,
                         name: document.data().name,
+                        prompt: document.data().prompt,
                         storyText: document.data().story.text
                     };
                     fetchedStories.push(fetchedStory);
@@ -47,9 +48,9 @@ export default function AdminConsole() {
     return (
         <div>
             {/* TODO: Make each part disappear when approve or delete clicked */}
-            {pendingStories?.map(({ id, name, storyText }) => (
+            {pendingStories?.map(({ id, name, prompt, storyText }) => (
                 <div key={id}>
-                    <p>{name}: {storyText}</p>
+                    <p> <b>{name}</b>: <i>{prompt}</i> {storyText}</p>
                     <button onClick={() => approveStory(id)}>
                         Approve
                     </button>

@@ -3,7 +3,7 @@ import styles from './Footer.module.scss';
 export default function Footer() {
     return(
         <div>
-            <footer class={styles.footer}>    
+            <footer className={styles.footer}>    
                 <hr/>
                 <br></br>
                 <div>
