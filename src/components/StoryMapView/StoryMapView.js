@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
+import { Dialog, DialogContent } from '@material-ui/core';
 
 import styles from './StoryMapView.module.scss';
-import StoryService from "../../services/story.service";
+import StoryService from '../../services/story.service';
+import StorySubmit from '../StorySubmit/StorySubmit';
 
 const position = [51.505, -0.09];
 
@@ -48,20 +50,37 @@ export default function StoryMapView() {
         });
     }, [])
     
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <MapContainer className={styles.map} center={position} zoom={1} scrollWheelZoom={false}>
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
-                <Marker position={latLong} key={index} icon={markerIcon}>
-                    <Popup>
-                        <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
-                    </Popup>
-                </Marker>
-            ))}
-        </MapContainer>
+        <div className={styles.mapParent}>
+            <MapContainer className={styles.map} center={position} zoom={1} scrollWheelZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
+                    <Marker position={latLong} key={index} icon={markerIcon}>
+                        <Popup>
+                            <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
+                        </Popup>
+                    </Marker>
+                ))}
+            </MapContainer>
+            <button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogContent>
+                    <StorySubmit />
+                </DialogContent>
+            </Dialog>
+        </div>
     )
 }
