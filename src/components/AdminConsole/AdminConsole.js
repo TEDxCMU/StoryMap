@@ -17,7 +17,6 @@ export default function AdminConsole() {
         const allData = StoryService.getAll()
         const fetchedStories = []
 
-        // same code as storyList, only diff is show all unapproved posts
         allData.get()
         .then(response => {
             response.docs.forEach(document => {
@@ -36,10 +35,14 @@ export default function AdminConsole() {
     }, [history]);
 
     const deleteStory = (id) => {
+        const newList = pendingStories.filter((item) => item.id !== id);
+        setPendingStories(newList);      
         StoryService.delete(id);
     };
 
     const approveStory = (id) => {
+        const newList = pendingStories.filter((item) => item.id !== id);
+        setPendingStories(newList);
         StoryService.update(id, {
             approved: true,
         });
@@ -47,7 +50,6 @@ export default function AdminConsole() {
 
     return (
         <div>
-            {/* TODO: Make each part disappear when approve or delete clicked */}
             {pendingStories?.map(({ id, name, prompt, storyText }) => (
                 <div key={id}>
                     <p> <b>{name}</b>: <i>{prompt}</i> {storyText}</p>
@@ -58,7 +60,7 @@ export default function AdminConsole() {
                         Delete
                     </button>
                     <br></br>
-                </div>
+                </div>        
             ))}
         </div>
     )
