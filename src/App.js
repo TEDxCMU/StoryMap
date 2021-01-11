@@ -1,22 +1,21 @@
 import { Switch, Route } from 'react-router-dom';
 
-import './App.css';
-import Home from './pages/Home';
-import AdminConsole from "./pages/AdminConsole";
-import Login from './pages/Login';
+import HomePage from './pages/Home';
+import AdminConsolePage from "./pages/AdminConsole";
+import LoginPage from './pages/Login';
 
 function App() {
     return (
         <div className="App">
             <Switch>
                 <Route path="/" exact>
-                    <Home />
+                    <HomePage />
                 </Route>
                 <Route path="/admin" exact>
-                    <AdminConsole />
+                    <AdminConsolePage />
                 </Route>
                 <Route path="/login" exact>
-                    <Login />
+                    <LoginPage />
                 </Route>
             </Switch>
         </div>
