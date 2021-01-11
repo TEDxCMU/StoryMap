@@ -7,7 +7,6 @@ export default function LoginPage() {
     return (
         <>
             <Header />
-            <h1>Admin Console:</h1>
             <AdminConsole />
             <Footer />
         </>

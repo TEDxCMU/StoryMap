@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import firebase from '../../firebase';
 import StoryService from "../../services/story.service";
+import styles from './AdminConsole.module.scss';
 
 export default function AdminConsole() {
     const history = useHistory();
@@ -49,14 +50,21 @@ export default function AdminConsole() {
     };
 
     return (
-        <div>
+        <div className={styles.adminParent}>
+            <h1>Admin Console:</h1>
             {pendingStories?.map(({ id, name, prompt, storyText }) => (
-                <div key={id}>
-                    <p> <b>{name}</b>: <i>{prompt}</i> {storyText}</p>
-                    <button onClick={() => approveStory(id)}>
+                <div key={id} className={styles.storyBlock}>
+                    <p> 
+                        <b>{name}</b>
+                        <br />
+                        <i>{prompt}</i> 
+                        <br />
+                        {storyText}
+                    </p>
+                    <button className={styles.approveButton} onClick={() => approveStory(id)}>
                         Approve
                     </button>
-                    <button onClick={() => deleteStory(id)}>
+                    <button className={styles.delButton} onClick={() => deleteStory(id)}>
                         Delete
                     </button>
                     <br></br>
