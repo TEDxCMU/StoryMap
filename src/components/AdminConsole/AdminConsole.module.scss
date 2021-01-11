@@ -19,10 +19,20 @@
   margin: 0 $space-10 0 0;
 }
 
+.approveButton:hover {
+  background-color: #0d9608;
+  cursor: pointer;
+}
+
 .delButton {
   background-color: $color__negative;
   border-radius: 10px;
   color: white;
   padding: $space-9 $space-8;
   margin: 0 $space-10 0 0;
+}
+
+.delButton:hover {
+  background-color: $red__dark;
+  cursor: pointer;
 }
