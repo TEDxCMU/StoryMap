@@ -2,8 +2,9 @@ import { useState } from "react";
 import StoryService from "../../services/story.service";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import promptList from "../../lib/prompts.js"
+import promptList from "../../lib/prompts.js";
 
+import styles from './StorySubmit.module.scss';
 
 export default function StorySubmit() {
   const [name, setName] = useState("");
@@ -47,10 +48,13 @@ export default function StorySubmit() {
 
     StoryService.add(newStory);
   };
+
+  
   return (
     <div>
+      <h1>Share Your Story:</h1>
       {!submitted && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
           <div>
             <label htmlFor='name'>Name</label>
             <input
@@ -95,7 +99,7 @@ export default function StorySubmit() {
               required
             />
           </div>
-          <input type='submit' />
+          <div><input className={styles.submit} type='submit' value='SUBMIT' /></div>
         </form>
       )}
       {submitted && (

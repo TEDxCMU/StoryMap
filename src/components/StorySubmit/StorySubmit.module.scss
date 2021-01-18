@@ -1,0 +1,40 @@
+@import "../../sass/import";
+
+.submit {
+  background-color: $red__light;
+  border-radius: 500px;
+  color: white;
+  padding: $space-9 $space-8;
+  z-index: 5;
+  position: absolute;
+  margin-bottom: 1vh;
+}
+
+.submit:hover {
+  background-color: $red__dark;
+  cursor: pointer;
+}
+
+.formBody {
+  margin: 0vh 0vh 8vh 0vh;
+}
+
+.formBody > div {
+  margin: 1vh 0vh;
+  width: 100%;
+}
+
+.formBody input[type="text"],
+.formBody textarea,
+.formBody select {
+  background-color: $grey__100;
+  border-radius: 5px;
+  width: 100%;
+  padding: 1.5vh 2vh;
+  margin: 0.5vh 0;
+  box-sizing: border-box;
+}
+
+textarea {
+  font-family: inherit;
+}

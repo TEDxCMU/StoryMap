@@ -6,9 +6,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-/* #mapid { height: 500px; } */
-.leaflet-container {
+/* #mapid { height: 500000px; } */
+/* .leaflet-container {
     width: 100%;
-  }
+  } */
 
   
