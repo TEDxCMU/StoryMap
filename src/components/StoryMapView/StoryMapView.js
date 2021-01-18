@@ -60,12 +60,20 @@ export default function StoryMapView() {
         setOpen(false);
     };
 
+
+//     var Jawg_Light = L.tileLayer('https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+// 	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+// 	minZoom: 0,
+// 	maxZoom: 22,
+// 	subdomains: 'abcd',
+// 	accessToken: '<your accessToken>'
+// });
     return (
         <div className={styles.mapParent}>
             <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={false}>
                 <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                 />
                 {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
                     <Marker position={latLong} key={index} icon={markerIcon}>
