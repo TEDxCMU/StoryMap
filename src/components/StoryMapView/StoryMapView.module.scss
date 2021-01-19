@@ -1,17 +1,23 @@
 @import "../../sass/import";
 
+.mypopup.leaflet-popup-content-wrapper{
+  background-color: gray;
+  opacity: 0.9;
+}
+
 .mapParent {
   position: relative;
 }
 
 .map {
-  height: $space-0;
+  height: 512px;
   z-index: 0;
+  
 }
 
 .addStory {
   background-color: $red__light;
-  border-radius: 15px;
+  border-radius: 500px;
   color: white;
   padding: $space-9 $space-8;
   z-index: 5;
@@ -24,3 +30,5 @@
   background-color: $red__dark;
   cursor: pointer;
 }
+
+
