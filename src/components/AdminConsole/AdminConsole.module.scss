@@ -1,0 +1,38 @@
+@import "../../sass/import";
+
+.adminParent {
+  margin: $space-8;
+}
+
+.storyBlock {
+  border-radius: 25px;
+  border: 2px solid $grey__300;
+  padding: $space-7;
+  margin: $space-10 0 $space-10 0;
+}
+
+.approveButton {
+  background-color: $color__positive;
+  border-radius: 10px;
+  color: white;
+  padding: $space-9 $space-8;
+  margin: 0 $space-10 0 0;
+}
+
+.approveButton:hover {
+  background-color: #0d9608;
+  cursor: pointer;
+}
+
+.delButton {
+  background-color: $color__negative;
+  border-radius: 10px;
+  color: white;
+  padding: $space-9 $space-8;
+  margin: 0 $space-10 0 0;
+}
+
+.delButton:hover {
+  background-color: $red__dark;
+  cursor: pointer;
+}
