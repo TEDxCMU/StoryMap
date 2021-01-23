@@ -19,10 +19,6 @@ export default function HomePage() {
             <div style={content}>
                 <Header />
                 <StoryMapView />
-                <br></br>
-                <h1>List of Stories:</h1>
-                <StoryList />
-                <br></br>
             </div>
             <Footer />
         </div>
