@@ -1,8 +1,7 @@
 @import "../../sass/import";
 
-.mypopup.leaflet-popup-content-wrapper{
-  background-color: gray;
-  opacity: 0.9;
+.popup {
+  word-wrap: break-word;
 }
 
 .mapParent {
@@ -12,7 +11,6 @@
 .map {
   height: 512px;
   z-index: 0;
-  
 }
 
 .addStory {

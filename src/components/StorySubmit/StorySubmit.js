@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import StoryService from "../../services/story.service";
 import Geocode from "react-geocode";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
@@ -13,7 +13,9 @@ export default function StorySubmit() {
   const [prompt, setPrompt] = useState("");
   const [storyText, setStoryText] = useState("");
   const [submitted, setSubmitted] = useState("");
+
   const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
+
   Geocode.setApiKey(apiKey);
   Geocode.setLanguage("en");
   Geocode.setRegion("en");
@@ -49,6 +51,10 @@ export default function StorySubmit() {
     StoryService.add(newStory);
   };
 
+  const allRequiredFields = () => {
+    return name && city && storyText;
+  }
+
   
   return (
     <div>
@@ -77,7 +83,8 @@ export default function StorySubmit() {
                     ...provided,
                     width: 300
                   })
-                }
+                },
+                required: true
               }}
             />
           </div>
@@ -99,7 +106,7 @@ export default function StorySubmit() {
               required
             />
           </div>
-          <div><input className={styles.submit} type='submit' value='SUBMIT' /></div>
+          <div><input className={styles.submit} type='submit' value='SUBMIT' disabled={!allRequiredFields()}/></div>
         </form>
       )}
       {submitted && (

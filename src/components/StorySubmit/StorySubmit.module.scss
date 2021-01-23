@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.submit:disabled {
+  background-color: $grey__700;
+}
+
 .formBody {
   margin: 0vh 0vh 8vh 0vh;
 }
@@ -37,4 +41,8 @@
 
 textarea {
   font-family: inherit;
+}
+
+.formBody input, .formBody textarea, .formBody select {
+  outline: none;
 }

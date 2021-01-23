@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { Dialog, DialogContent } from '@material-ui/core';
 
@@ -77,7 +77,7 @@ export default function StoryMapView() {
                 />
                 {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
                     <Marker position={latLong} key={index} icon={markerIcon}>
-                        <Popup className = {styles.popup}>
+                        <Popup className={styles.popup}>
                             <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
                         </Popup>
                     </Marker>
