@@ -11,7 +11,7 @@ const container = {
 };
 
 const content = {
-    paddingBottom: '6rem'
+    paddingBottom: '5rem'
 };
 
 export default function HomePage() {
