@@ -9,7 +9,7 @@ export default function Footer() {
                 
                 <p>
                     <a href="/login">About This Site</a>&#160; &middot; &#160;
-                    <a href="/login">Admin Login</a>
+                    <a href="/login">Admin</a>
                 </p>
             </div>
         </footer>

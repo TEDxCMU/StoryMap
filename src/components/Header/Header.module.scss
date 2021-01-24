@@ -16,6 +16,7 @@
 
 .title {
   font-size: $space-4;
+  font-family: $font__fancy;
 }
 
 @media screen and (max-width: $viewport__medium) {
@@ -26,5 +27,6 @@
 
   .title {
     font-size: $space-5;
+    transform: translateY(-5px);
   }
 }
