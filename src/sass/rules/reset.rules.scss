@@ -61,3 +61,11 @@ img {
     height: 50px;
     width: 100%;
   }
+
+.marker-cluster {
+    background-color: $red__dark;
+    color: white;
+}
+.marker-cluster div {
+    background-color: $red__light;
+}

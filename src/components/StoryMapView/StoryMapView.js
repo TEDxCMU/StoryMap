@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { Dialog, DialogContent } from '@material-ui/core';
 
 import styles from './StoryMapView.module.scss';
@@ -70,18 +71,20 @@ export default function StoryMapView() {
 // });
     return (
         <div className={styles.mapParent}>
-            <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={false}>
+            <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={true}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                 />
-                {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
-                    <Marker position={latLong} key={index} icon={markerIcon}>
-                        <Popup className={styles.popup}>
-                            <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
-                        </Popup>
-                    </Marker>
-                ))}
+                <MarkerClusterGroup>
+                    {allStories?.map(({ id, name, prompt, storyText, latLong}, index) => (
+                        <Marker position={latLong} key={index} icon={markerIcon}>
+                            <Popup className={styles.popup}>
+                                <b>{name}</b> <br/> <i>{prompt}</i> <br/> {storyText}
+                            </Popup>
+                        </Marker>
+                    ))}
+                </MarkerClusterGroup>
             </MapContainer>
             <button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button>
             <Dialog open={open} onClose={handleClose}>
