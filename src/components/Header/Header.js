@@ -14,7 +14,6 @@ export default function Header() {
                     <h1 className={styles.title}>Story Map</h1>
                 </a>
             </div>
-            <hr />
         </nav>
     )
 }

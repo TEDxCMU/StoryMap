@@ -1,0 +1,33 @@
+@import "../../sass/import";
+
+.about_block {
+  padding: 2em 4em;
+  text-align: center;
+  min-height: 5em;
+}
+
+.about_block > p > a {
+  color: $black;
+  text-decoration: underline;
+}
+
+.about_block > p > a:hover {
+  color: $red;
+}
+
+.about_lgray {
+  background-color: $grey__050;
+}
+
+.about_medgray {
+  background-color: $grey__100;
+}
+
+.about_gray {
+  background-color: $grey__300;
+}
+
+.about_title {
+  font-family: $font__fancy;
+  font-size: $space-5;
+}
