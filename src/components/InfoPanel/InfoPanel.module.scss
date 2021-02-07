@@ -1,0 +1,30 @@
+@import "../../sass/import";
+
+.info_body {
+  background-color: $grey__050;
+  height: 10rem;
+  z-index: 0;
+}
+
+.info_content {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.info_title {
+  font-size: $space-5;
+}
+
+.info_fancy {
+  font-family: $font__fancy;
+}
+
+.info_text {
+  color: $grey__700;
+}
+
+@media screen and (max-width: $viewport__medium) {
+  .info_content {
+    padding: 2.5rem 2rem;
+  }
+}

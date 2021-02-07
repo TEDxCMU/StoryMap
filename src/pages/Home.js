@@ -3,6 +3,7 @@ import StorySubmit from '../components/StorySubmit/StorySubmit';
 import StoryMapView from '../components/StoryMapView/StoryMapView';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import InfoPanel from '../components/InfoPanel/InfoPanel';
 
 const container = {
     position: 'relative',
@@ -10,7 +11,7 @@ const container = {
 };
 
 const content = {
-    paddingBottom: '6rem'
+    paddingBottom: '5rem'
 };
 
 export default function HomePage() {
@@ -18,11 +19,8 @@ export default function HomePage() {
         <div style={container}>
             <div style={content}>
                 <Header />
+                <InfoPanel />
                 <StoryMapView />
-                <br></br>
-                <h1>List of Stories:</h1>
-                <StoryList />
-                <br></br>
             </div>
             <Footer />
         </div>
