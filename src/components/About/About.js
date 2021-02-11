@@ -4,7 +4,7 @@ export default function About() {
     return(
         <div>
             <div className={`${styles.about_block} ${styles.about_lgray}`}>
-                <p>[This is where a mission statement would go. For now, we just have some random text here and in the team descriptions temporarily.] A joint venture by TEDxCMU's Salon Team and Innovation Team.</p>
+                <p>StoryMap is a joint venture by TEDxCMU Innovation and TEDxCMU Salon.</p>
             </div>
             <div className={`${styles.about_block} ${styles.about_medgray}`}>
                 <h2 className={styles.about_title}>SALON</h2>
