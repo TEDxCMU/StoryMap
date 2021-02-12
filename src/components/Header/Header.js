@@ -10,9 +10,9 @@ export default function Header() {
                         <Logo className={styles.logo}/>
                     </a>
                 </div>
-                <a href="/">
+                {/* <a href="/">
                     <h1 className={styles.title}>Story Map</h1>
-                </a>
+                </a> */}
             </div>
         </nav>
     )

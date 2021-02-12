@@ -1,17 +1,25 @@
 @import "../../sass/import";
 
 .logo {
-  width: 100%;
-  height: 100%;
+  // vertical-align: middle;
+  max-width: 100%;
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
 }
 
 .logo_container {
+  vertical-align: middle;
   height: $space-2;
   width: $space-0;
+  display: table-cell;
+
 }
 
 .header_items {
-  display: flex;
+  display: inline-block; 
+  // margin: 20px;
+  // display: flex;
 }
 
 .title {
