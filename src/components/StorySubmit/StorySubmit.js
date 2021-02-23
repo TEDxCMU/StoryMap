@@ -8,11 +8,13 @@ import styles from './StorySubmit.module.scss';
 
 export default function StorySubmit() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [latLong, setLatLong] = useState({ lat: 0, lng: 0 });
   const [prompt, setPrompt] = useState("");
   const [storyText, setStoryText] = useState("");
   const [submitted, setSubmitted] = useState("");
+
 
   const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
 
@@ -39,6 +41,7 @@ export default function StorySubmit() {
     setSubmitted(true);
     let newStory = {
       name: name,
+      email: email,
       city: city,
       latLong: latLong,
       prompt: prompt,
@@ -52,7 +55,7 @@ export default function StorySubmit() {
   };
 
   const allRequiredFields = () => {
-    return name && city && storyText;
+    return name && storyText && email;//city
   }
 
   
@@ -67,6 +70,15 @@ export default function StorySubmit() {
               type='text'
               id='name'
               onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input
+              type='text'
+              id='email'
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>

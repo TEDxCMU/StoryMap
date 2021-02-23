@@ -22,11 +22,13 @@ export default function AdminConsole() {
         .then(response => {
             response.docs.forEach(document => {
                 if (!document.data().approved) {
+                    // if (document.data().email) {}
                     const fetchedStory = {
                         id: document.id,
                         name: document.data().name,
                         prompt: document.data().prompt,
-                        storyText: document.data().story.text
+                        storyText: document.data().story.text,
+                        email: document.data().email
                     };
                     fetchedStories.push(fetchedStory);
                 }
@@ -52,10 +54,12 @@ export default function AdminConsole() {
     return (
         <div className={styles.adminParent}>
             <h1>Admin Console:</h1>
-            {pendingStories?.map(({ id, name, prompt, storyText }) => (
+            {pendingStories?.map(({ id, name, email, prompt, storyText }) => (
                 <div key={id} className={styles.storyBlock}>
                     <p> 
                         <b>{name}</b>
+                        <br />
+                        <r>{email}</r>
                         <br />
                         <i>{prompt}</i> 
                         <br />
