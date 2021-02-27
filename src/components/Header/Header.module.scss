@@ -2,24 +2,31 @@
 
 .logo {
   // vertical-align: middle;
-  max-width: 100%;
-  max-height: 100px;
+  // max-width: 100%;
+  // height: $space-4;
   display: block;
-  margin: 0 auto;
+  // margin: 1000 auto;
 }
 
 .logo_container {
   vertical-align: middle;
-  height: $space-2;
-  width: $space-0;
+  // height: $space-4;
+  width: $space-1;
   display: table-cell;
 
 }
 
 .header_items {
-  display: inline-block; 
+  display: flex;
+  justify-content: space-between;
   // margin: 20px;
+  margin-right: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 40px;
   // display: flex;
+
+
 }
 
 .title {
@@ -37,4 +44,15 @@
     font-size: $space-5;
     transform: translateY(-5px);
   }
+}
+.text_link_items {
+  display: table; height: $space-4; overflow: hidden;
+}
+.textLinks {
+
+  display: table-cell; 
+  vertical-align: middle;
+  color: $black;
+  font-size: 12px;
+
 }

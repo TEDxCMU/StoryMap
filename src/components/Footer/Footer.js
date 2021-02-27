@@ -8,7 +8,7 @@ export default function Footer() {
                 <p>Made by <a href="https://www.tedxcmu.org/" target="_blank">TEDxCMU</a></p>
                 
                 <p>
-                    <a href="/about">About This Site</a>&#160; &middot; &#160;
+                    {/* <a href="/about">About This Site</a>&#160; &middot; &#160; */}
                     <a href="/login">Admin</a>
                 </p>
             </div>
