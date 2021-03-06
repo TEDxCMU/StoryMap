@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useState, useEffect, Component} from "react";
+import { MapConsumer, MapContainer, TileLayer, Marker, Popup, useMapEvents} from 'react-leaflet';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { Dialog, DialogContent } from '@material-ui/core';
@@ -54,14 +54,50 @@ export default function StoryMapView() {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
+        console.log("clickopen")
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
     };
+    
+    const [selectionMarker, setSelectionMarker] = useState({ lat: 0, lng: 0 });
 
+    
+    const ClickComponent = props => {
+        
+        // console.log("clicked on clickComponent")
+        const initMarker = (ref) => {
+            if (ref) {
+                console.log(ref, ref.leafletElement)
+                // ref.options.leafletElement.openPopup()
+            }
+        };
 
+        const map = useMapEvents({
+            click(e) {
+
+                const {lat, lng} = e.latlng;
+                // console.log({lat, lng})
+                setSelectionMarker({lat, lng})
+
+                console.log(selectionMarker)
+
+            },
+        })
+        if (selectionMarker){
+            return <Marker ref = {initMarker} position={selectionMarker} icon={markerIcon} {...props}>
+                <Popup>
+                    {/* < button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button> */}
+                    <StorySubmit coordinates = {selectionMarker}/>
+                </Popup>
+
+            </Marker>
+
+        }
+        return null
+    }
 //     var Jawg_Light = L.tileLayer('https://{s}.tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
 // 	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 // 	minZoom: 0,
@@ -71,8 +107,20 @@ export default function StoryMapView() {
 // });
     return (
         <div className={styles.mapParent}>
+            
             <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={true}>
-                <TileLayer
+                <ClickComponent/>
+                    <MapConsumer>
+                        {(map) => {
+                            if (selectionMarker) {
+                                // console.log("map", map.openPopup())
+
+                            }
+                            return null
+                        }}
+                    </MapConsumer>
+                {/* </ClickComponent> */}
+                <TileLayer 
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                 />
