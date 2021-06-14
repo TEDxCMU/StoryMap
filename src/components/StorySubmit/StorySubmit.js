@@ -6,10 +6,11 @@ import promptList from "../../lib/prompts.js";
 
 import styles from './StorySubmit.module.scss';
 
-export default function StorySubmit() {
+export default function StorySubmit(props) {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
-  const [latLong, setLatLong] = useState({ lat: 0, lng: 0 });
+  const [latLong, setLatLong] = useState({ lat: props.coordinates.lat, lng: props.coordinates.lng});
   const [prompt, setPrompt] = useState("");
   const [storyText, setStoryText] = useState("");
   const [submitted, setSubmitted] = useState("");
@@ -19,6 +20,9 @@ export default function StorySubmit() {
   Geocode.setApiKey(apiKey);
   Geocode.setLanguage("en");
   Geocode.setRegion("en");
+  
+  
+
 
   const setLocationInfo = (e) => {
     console.log(e)
@@ -37,9 +41,13 @@ export default function StorySubmit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    // const {lat, lng} = props.coordinates;
+    
+
     let newStory = {
       name: name,
-      city: city,
+      email: email,
+      // city: city,
       latLong: latLong,
       prompt: prompt,
       story: {
@@ -47,18 +55,24 @@ export default function StorySubmit() {
       },
       approved: false
     };
+    // setLatLong(props.coordinates);
+    // console.log(latLong);
 
     StoryService.add(newStory);
   };
 
   const allRequiredFields = () => {
-    return name && city && storyText;
+    return name && storyText && email;//city
   }
 
   
   return (
     <div>
+      {
+        
+      }
       <h1>Share Your Story:</h1>
+      
       {!submitted && (
         <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
           <div>
@@ -71,29 +85,22 @@ export default function StorySubmit() {
             />
           </div>
           <div>
-            <label htmlFor='city'>Your City</label>
-            <GooglePlacesAutocomplete
-              apiKey={apiKey}
-              selectProps={{
-                city,
-                onChange: (e) => setLocationInfo(e.label),
-                id: "city",
-                styles: {
-                  container: (provided) => ({
-                    ...provided,
-                    width: 300
-                  })
-                },
-                required: true
-              }}
+            <label htmlFor='email'>Email</label>
+            <input
+              type='text'
+              id='email'
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
+          
           <div>
             <label htmlFor='prompt'>Choose a prompt:</label>
               <select onChange={(e) => setPrompt(e.target.value)}>
                 {promptList?.map((promptStr) => (
                   <option value={promptStr}>{promptStr}</option>
-                ))}
+                ))
+                }
               </select>
           </div>
           <div>

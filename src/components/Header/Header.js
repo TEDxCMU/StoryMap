@@ -10,9 +10,14 @@ export default function Header() {
                         <Logo className={styles.logo}/>
                     </a>
                 </div>
-                <a href="/">
+                <div className={styles.text_link_items} >
+                    <a className={styles.textLinks} href="/">HOME</a>
+                    &#160;  &#160;
+                    <a className={styles.textLinks} href="/about">ABOUT THIS PAGE</a>
+                </div>
+                {/* <a href="/">
                     <h1 className={styles.title}>Story Map</h1>
-                </a>
+                </a> */}
             </div>
         </nav>
     )
