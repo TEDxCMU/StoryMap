@@ -1,7 +1,7 @@
 import styles from './About.module.scss';
 
-export default function About() {
-    return(
+function About() {
+    return (
         <div>
             <div className={`${styles.about_block} ${styles.about_lgray}`}>
                 <p>StoryMap is a joint venture by TEDxCMU Innovation and TEDxCMU Salon.</p>
@@ -20,3 +20,5 @@ export default function About() {
         </div>
     )
 }
+
+export default About;
