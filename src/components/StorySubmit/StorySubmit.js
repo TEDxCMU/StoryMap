@@ -76,6 +76,9 @@ export default function StorySubmit(props) {
       {!submitted && (
         <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
           <div>
+            <label>Start your story at your selected location: {latLong.lat.toFixed(4)}, {latLong.lng.toFixed(4)}</label>
+          </div>
+          <div>
             <label htmlFor='name'>Name</label>
             <input
               type='text'

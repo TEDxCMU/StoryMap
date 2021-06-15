@@ -81,17 +81,18 @@ export default function StoryMapView() {
                 const {lat, lng} = e.latlng;
                 // console.log({lat, lng})
                 setSelectionMarker({lat, lng})
-
+                setOpen(true)
                 console.log(selectionMarker)
 
             },
         })
         if (selectionMarker){
             return <Marker ref = {initMarker} position={selectionMarker} icon={markerIcon} {...props}>
-                <Popup>
+
+                {/* <Popup> */}
                     {/* < button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button> */}
-                    <StorySubmit coordinates = {selectionMarker}/>
-                </Popup>
+                    {/* <StorySubmit coordinates = {selectionMarker}/> */}
+                {/* </Popup> */}
 
             </Marker>
 
@@ -134,10 +135,10 @@ export default function StoryMapView() {
                     ))}
                 </MarkerClusterGroup>
             </MapContainer>
-            <button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button>
-            <Dialog open={open} onClose={handleClose}>
+            {/* <button className={styles.addStory} onClick={handleClickOpen}>ADD YOUR STORY</button> */}
+            <Dialog open={open} onClose={handleClose} >
                 <DialogContent>
-                    <StorySubmit />
+                    <StorySubmit coordinates={selectionMarker}/>
                 </DialogContent>
             </Dialog>
         </div>
