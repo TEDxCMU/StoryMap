@@ -18,11 +18,11 @@ function About() {
             </div>
             <div className={styles.about_block}>
                 <p>
-                    Want to be a part of our team? Check out
+                    Want to be a part of our team? Check out&nbsp;
                     <a href="https://www.tedxcmu.org/" target="_blank" rel="noopener noreferrer">
                         our website
                     </a>
-                    to see when we're looking for new members.
+                    &nbsp;to see when we're looking for new members.
                 </p>
             </div>
         </div>

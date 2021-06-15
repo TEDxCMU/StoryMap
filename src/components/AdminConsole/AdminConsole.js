@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
 import styles from './AdminConsole.module.scss';
-import firebase from '../../firebase';
+import { useAuth } from '../../lib/auth-provider';
 import StoryService from "../../services/story.service";
 
 function AdminConsole() {
+    const AuthContext = useAuth();
     const history = useHistory();
     const [pendingStories, setPendingStories] = useState([]);
 
     useEffect(() => {
-        if (!firebase.auth().currentUser) {
+        if (!AuthContext.user) {
             history.push("/login");
             return;
         }
@@ -27,7 +28,7 @@ function AdminConsole() {
             });
             setPendingStories(newStories);
         })();
-    }, [history]);
+    }, [history, AuthContext]);
 
     const deleteStory = (id) => {
         const newList = pendingStories.filter((item) => item.id !== id);
