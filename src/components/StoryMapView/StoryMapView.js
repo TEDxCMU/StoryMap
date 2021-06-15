@@ -84,10 +84,14 @@ function StoryMapView() {
                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                 />
                 <MarkerClusterGroup>
-                    {allStories?.map(({ id, name, prompt, storyText, latLong }, index) => (
-                        <Marker position={latLong} key={index} icon={markerIcon}>
+                    {allStories?.map(({ id, name, prompt, story, latLong }) => (
+                        <Marker key={id} position={latLong} icon={markerIcon}>
                             <Popup className={styles.popup}>
-                                <b>{name}</b> <br /> <i>{prompt}</i> <br /> {storyText}
+                                <b>{name}</b>
+                                <br />
+                                <i>{prompt}</i>
+                                <br />
+                                {story.text}
                             </Popup>
                         </Marker>
                     ))}

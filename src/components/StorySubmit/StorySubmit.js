@@ -1,22 +1,15 @@
 import { useState } from "react";
-import Geocode from "react-geocode";
 
 import styles from './StorySubmit.module.scss';
-import StoryService from "../../services/story.service";
-import prompts from "../../lib/prompts";
+import StoryService from '../../services/story.service';
+import prompts from '../../lib/prompts';
 
 function StorySubmit({ latLong }) {
     const [name, setName] = useState('');
-    const [email, setEmail] = useState("");
-    const [prompt, setPrompt] = useState("");
-    const [storyText, setStoryText] = useState("");
-    const [submitted, setSubmitted] = useState("");
-
-    const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
-
-    Geocode.setApiKey(apiKey);
-    Geocode.setLanguage("en");
-    Geocode.setRegion("en");
+    const [email, setEmail] = useState('');
+    const [prompt, setPrompt] = useState(prompts[0]);
+    const [storyText, setStoryText] = useState('');
+    const [submitted, setSubmitted] = useState('');
 
     const handleName = (event) => {
         setName(event.target.value);

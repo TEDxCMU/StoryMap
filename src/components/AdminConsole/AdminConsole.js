@@ -39,15 +39,13 @@ function AdminConsole() {
     const approveStory = (id) => {
         const newList = pendingStories.filter((item) => item.id !== id);
         setPendingStories(newList);
-        StoryService.update(id, {
-            approved: true,
-        });
+        StoryService.update(id, { approved: true });
     };
 
     return (
-        <div className={styles.adminParent}>
-            <h1>Admin Console:</h1>
-            {pendingStories?.map(({ id, name, email, prompt, storyText }) => (
+        <div className={styles.container}>
+            <h1>Admin Console</h1>
+            {pendingStories?.map(({ id, name, email, prompt, story }) => (
                 <div key={id} className={styles.storyBlock}>
                     <p> 
                         <b>{name}</b>
@@ -56,7 +54,7 @@ function AdminConsole() {
                         <br />
                         <i>{prompt}</i> 
                         <br />
-                        {storyText}
+                        {story.text}
                     </p>
                     <button className={styles.approveButton} onClick={() => approveStory(id)}>
                         Approve
