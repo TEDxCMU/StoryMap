@@ -1,6 +1,6 @@
 import { firestore } from "../firebase";
 
-const db = firestore.collection("/stories");
+const db = firestore.collection("stories");
 
 class StoryService {
     getAll() {
@@ -14,10 +14,12 @@ class StoryService {
     update(id, value) {
         return db.doc(id).update(value);
     }
-    
+
     delete(id) {
         return db.doc(id).delete();
     }
 }
 
-export default new StoryService();
+const instance = new StoryService();
+
+export default instance;

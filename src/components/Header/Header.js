@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.scss';
 
 function Header() {
@@ -5,14 +7,14 @@ function Header() {
         <nav>
             <div className={styles.header_items}>
                 <div className={styles.logo_container}>
-                    <a href="https://www.tedxcmu.org/" target="_blank" rel="noreferrer noopener">
-                        <img src="/tedx-logo.svg" alt="TEDxCMU Logo" />
-                    </a>
+                    <Link to="/">
+                        <img className={styles.logo} src="/tedx-logo.svg" alt="TEDxCMU Logo" />
+                    </Link>
                 </div>
-                <div className={styles.text_link_items} >
-                    <a className={styles.textLinks} href="/">HOME</a>
-                    &#160;  &#160;
-                    <a className={styles.textLinks} href="/about">ABOUT THIS PAGE</a>
+                <div className={styles.text_link_items}>
+                    <Link className={styles.textLinks} to="/about">
+                        ABOUT
+                    </Link>
                 </div>
             </div>
         </nav>

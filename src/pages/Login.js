@@ -1,9 +1,8 @@
-import Login from '../components/Login/Login';
 import Header from '../components/Header/Header';
+import Login from '../components/Login/Login';
 import Footer from '../components/Footer/Footer';
 
-
-export default function LoginPage() {
+function LoginPage() {
     return (
         <>
             <Header />
@@ -12,3 +11,5 @@ export default function LoginPage() {
         </>
     );
 }
+
+export default LoginPage;

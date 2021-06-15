@@ -2,8 +2,7 @@ import About from '../components/About/About';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 
-
-export default function LoginPage() {
+function AboutPage() {
     return (
         <>
             <Header />
@@ -12,3 +11,5 @@ export default function LoginPage() {
         </>
     );
 }
+
+export default AboutPage;

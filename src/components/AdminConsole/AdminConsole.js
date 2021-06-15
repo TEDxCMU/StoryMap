@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
+import styles from './AdminConsole.module.scss';
 import firebase from '../../firebase';
 import StoryService from "../../services/story.service";
-import styles from './AdminConsole.module.scss';
 
-export default function AdminConsole() {
+function AdminConsole() {
     const history = useHistory();
     const [pendingStories, setPendingStories] = useState([]);
 
@@ -15,26 +15,18 @@ export default function AdminConsole() {
             return;
         }
 
-        const allData = StoryService.getAll()
-        const fetchedStories = []
-
-        allData.get()
-        .then(response => {
-            response.docs.forEach(document => {
-                if (!document.data().approved) {
-                    // if (document.data().email) {}
-                    const fetchedStory = {
-                        id: document.id,
-                        name: document.data().name,
-                        prompt: document.data().prompt,
-                        storyText: document.data().story.text,
-                        email: document.data().email
-                    };
-                    fetchedStories.push(fetchedStory);
+        (async function() {
+            const allData = StoryService.getAll()
+            const response = await allData.get();
+            const newStories = [];
+            response.docs.forEach((doc) => {
+                const data = doc.data();
+                if (!data.approved) {
+                    newStories.push({ id: doc.id, ...data });
                 }
             });
-            setPendingStories(fetchedStories);
-        });
+            setPendingStories(newStories);
+        })();
     }, [history]);
 
     const deleteStory = (id) => {
@@ -77,3 +69,5 @@ export default function AdminConsole() {
         </div>
     )
 }
+
+export default AdminConsole;
