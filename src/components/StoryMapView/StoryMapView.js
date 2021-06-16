@@ -20,26 +20,26 @@ const markerIcon = L.icon({
 
 const position = [40.4, -79.9];
 
-function ClickComponent({ selectionMarker, setSelectionMarker }) {
+function ClickComponent({ selectionMarker, setSelectionMarker, handleClickOpen }) {
     useMapEvents({
         click(e) {
             const { lat, lng } = e.latlng;
             setSelectionMarker({ lat, lng });
+            handleClickOpen(true);
         },
     });
 
     if (selectionMarker) {
         return (
             <Marker position={selectionMarker} icon={markerIcon}>
-                <Popup>
+                {/* <Popup>
                     <StorySubmit latLong={selectionMarker} />
-                </Popup>
+                </Popup> */}
             </Marker>
         )
-
     }
 
-    return null
+    return null;
 }
 
 function StoryMapView() {
@@ -48,8 +48,8 @@ function StoryMapView() {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        (async function() {
-            const allData = StoryService.getAll()            
+        (async function () {
+            const allData = StoryService.getAll()
             const newStories = []
             const response = await allData.get();
             response.docs.forEach((doc) => {
@@ -78,7 +78,11 @@ function StoryMapView() {
     return (
         <div className={styles.mapParent}>
             <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={true}>
-                <ClickComponent selectionMarker={selectionMarker} setSelectionMarker={setSelectionMarker} />
+                <ClickComponent
+                    selectionMarker={selectionMarker}
+                    setSelectionMarker={setSelectionMarker}
+                    handleClickOpen={handleClickOpen}
+                />
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
@@ -97,9 +101,6 @@ function StoryMapView() {
                     ))}
                 </MarkerClusterGroup>
             </MapContainer>
-            <button className={styles.addStory} onClick={handleClickOpen}>
-                ADD YOUR STORY
-            </button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogContent>
                     <StorySubmit latLong={selectionMarker} />
