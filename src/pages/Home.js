@@ -1,23 +1,13 @@
-import StoryList from '../components/storyList';
-import StorySubmit from '../components/StorySubmit/StorySubmit';
-import StoryMapView from '../components/StoryMapView/StoryMapView';
+import styles from './Home.module.scss';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import InfoPanel from '../components/InfoPanel/InfoPanel';
+import StoryMapView from '../components/StoryMapView/StoryMapView';
+import Footer from '../components/Footer/Footer';
 
-const container = {
-    position: 'relative',
-    minHeight: '100vh'
-};
-
-const content = {
-    paddingBottom: '5rem'
-};
-
-export default function HomePage() {
+function HomePage() {
     return (
-        <div style={container}>
-            <div style={content}>
+        <div className={styles.container}>
+            <div className={styles.content}>
                 <Header />
                 <InfoPanel />
                 <StoryMapView />
@@ -26,3 +16,5 @@ export default function HomePage() {
         </div>
     );
 }
+
+export default HomePage;

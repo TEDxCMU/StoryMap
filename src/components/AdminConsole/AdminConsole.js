@@ -1,41 +1,34 @@
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
-import firebase from '../../firebase';
-import StoryService from "../../services/story.service";
 import styles from './AdminConsole.module.scss';
+import { useAuth } from '../../lib/auth-provider';
+import StoryService from "../../services/story.service";
 
-export default function AdminConsole() {
+function AdminConsole() {
+    const AuthContext = useAuth();
     const history = useHistory();
     const [pendingStories, setPendingStories] = useState([]);
 
     useEffect(() => {
-        if (!firebase.auth().currentUser) {
+        if (!AuthContext.user) {
             history.push("/login");
             return;
         }
 
-        const allData = StoryService.getAll()
-        const fetchedStories = []
-
-        allData.get()
-        .then(response => {
-            response.docs.forEach(document => {
-                if (!document.data().approved) {
-                    // if (document.data().email) {}
-                    const fetchedStory = {
-                        id: document.id,
-                        name: document.data().name,
-                        prompt: document.data().prompt,
-                        storyText: document.data().story.text,
-                        email: document.data().email
-                    };
-                    fetchedStories.push(fetchedStory);
+        (async function() {
+            const allData = StoryService.getAll()
+            const response = await allData.get();
+            const newStories = [];
+            response.docs.forEach((doc) => {
+                const data = doc.data();
+                if (!data.approved) {
+                    newStories.push({ id: doc.id, ...data });
                 }
             });
-            setPendingStories(fetchedStories);
-        });
-    }, [history]);
+            setPendingStories(newStories);
+        })();
+    }, [history, AuthContext]);
 
     const deleteStory = (id) => {
         const newList = pendingStories.filter((item) => item.id !== id);
@@ -46,15 +39,13 @@ export default function AdminConsole() {
     const approveStory = (id) => {
         const newList = pendingStories.filter((item) => item.id !== id);
         setPendingStories(newList);
-        StoryService.update(id, {
-            approved: true,
-        });
+        StoryService.update(id, { approved: true });
     };
 
     return (
-        <div className={styles.adminParent}>
-            <h1>Admin Console:</h1>
-            {pendingStories?.map(({ id, name, email, prompt, storyText }) => (
+        <div className={styles.container}>
+            <h1>Admin Console</h1>
+            {pendingStories?.map(({ id, name, email, prompt, story }) => (
                 <div key={id} className={styles.storyBlock}>
                     <p> 
                         <b>{name}</b>
@@ -63,7 +54,7 @@ export default function AdminConsole() {
                         <br />
                         <i>{prompt}</i> 
                         <br />
-                        {storyText}
+                        {story.text}
                     </p>
                     <button className={styles.approveButton} onClick={() => approveStory(id)}>
                         Approve
@@ -77,3 +68,5 @@ export default function AdminConsole() {
         </div>
     )
 }
+
+export default AdminConsole;

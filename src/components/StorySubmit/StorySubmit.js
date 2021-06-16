@@ -1,129 +1,115 @@
-import { useState, useEffect, useRef } from "react";
-import StoryService from "../../services/story.service";
-import Geocode from "react-geocode";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import promptList from "../../lib/prompts.js";
+import { useState } from "react";
 
 import styles from './StorySubmit.module.scss';
+import StoryService from '../../services/story.service';
+import prompts from '../../lib/prompts';
 
-export default function StorySubmit(props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [city, setCity] = useState("");
-  const [latLong, setLatLong] = useState({ lat: props.coordinates.lat, lng: props.coordinates.lng});
-  const [prompt, setPrompt] = useState("");
-  const [storyText, setStoryText] = useState("");
-  const [submitted, setSubmitted] = useState("");
+function StorySubmit({ latLong }) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [prompt, setPrompt] = useState(prompts[0]);
+    const [storyText, setStoryText] = useState('');
+    const [submitted, setSubmitted] = useState('');
 
-  const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
-
-  Geocode.setApiKey(apiKey);
-  Geocode.setLanguage("en");
-  Geocode.setRegion("en");
-  
-  
-
-
-  const setLocationInfo = (e) => {
-    console.log(e)
-    setCity(e);
-    Geocode.fromAddress(e).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        setLatLong({ lat, lng });
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // const {lat, lng} = props.coordinates;
-    
-
-    let newStory = {
-      name: name,
-      email: email,
-      // city: city,
-      latLong: latLong,
-      prompt: prompt,
-      story: {
-        text: storyText
-      },
-      approved: false
+    const handleName = (event) => {
+        setName(event.target.value);
     };
-    // setLatLong(props.coordinates);
-    // console.log(latLong);
 
-    StoryService.add(newStory);
-  };
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    };
 
-  const allRequiredFields = () => {
-    return name && storyText && email;//city
-  }
+    const handlePrompt = (event) => {
+        setPrompt(event.target.value);
+    };
 
-  
-  return (
-    <div>
-      {
-        
-      }
-      <h1>Share Your Story:</h1>
-      
-      {!submitted && (
-        <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
-          <div>
-            <label>Start your story at your selected location: {latLong.lat.toFixed(4)}, {latLong.lng.toFixed(4)}</label>
-          </div>
-          <div>
-            <label htmlFor='name'>Name</label>
-            <input
-              type='text'
-              id='name'
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              type='text'
-              id='email'
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div>
-            <label htmlFor='prompt'>Choose a prompt:</label>
-              <select onChange={(e) => setPrompt(e.target.value)}>
-                {promptList?.map((promptStr) => (
-                  <option value={promptStr}>{promptStr}</option>
-                ))
-                }
-              </select>
-          </div>
-          <div>
-            <label htmlFor='story'>Your Story</label>
-            <textarea
-              id='story'
-              rows='10'
-              cols='30'
-              onChange={(e) => setStoryText(e.target.value)}
-              required
-            />
-          </div>
-          <div><input className={styles.submit} type='submit' value='SUBMIT' disabled={!allRequiredFields()}/></div>
-        </form>
-      )}
-      {submitted && (
+    const handleStoryText = (event) => {
+        setStoryText(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setSubmitted(true);
+        StoryService.add({
+            latLong,
+            name,
+            email,
+            prompt,
+            story: {
+                text: storyText
+            },
+            approved: false
+        });
+    };
+
+    return (
         <div>
-          <p>Submitted successfully! Thank you!</p>
+            <h1>Share Your Story:</h1>
+            {!submitted && (
+                <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
+                    <div>
+                        <label>
+                            Start your story at your selected location: {latLong.lat.toFixed(4)}, {latLong.lng.toFixed(4)}
+                        </label>
+                    </div>
+                    <div>
+                        <label htmlFor="name">Name</label>
+                        <input
+                            id="name"
+                            type="text"
+                            onChange={handleName}
+                            value={name}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            type="text"
+                            onChange={handleEmail}
+                            value={email}
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="prompt">Choose a prompt:</label>
+                        <select id="prompt" value={prompt} onChange={handlePrompt}>
+                            {prompts.map((text, index) => (
+                                <option key={index} value={text}>
+                                    {text}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="story">Your Story</label>
+                        <textarea
+                            id="story"
+                            rows="10"
+                            cols="30"
+                            value={storyText}
+                            onChange={handleStoryText}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            className={styles.submit}
+                            type="submit"
+                            disabled={!(name && storyText && email)}
+                        />
+                    </div>
+                </form>
+            )}
+            {submitted && (
+                <div>
+                    <p>Submitted successfully! Thank you!</p>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 }
+
+export default StorySubmit;

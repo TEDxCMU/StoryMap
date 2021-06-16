@@ -3,19 +3,21 @@ import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
 
 import app from '../../firebase';
+import { useAuth } from '../../lib/auth-provider';
 import styles from './Login.module.scss';
 
 function Login() {
+    const AuthContext = useAuth();
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (app.auth().currentUser) {
-            history.push("/admin");
+        if (AuthContext.user) {
+            history.push('/admin');
         }
-    }, [history]);
+    }, [history, AuthContext]);
 
     const handleEmail = (event) => {
         setEmail(event.target.value);

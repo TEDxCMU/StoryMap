@@ -1,24 +1,24 @@
-import { ReactComponent as Logo } from "../../public/TEDx-logo.svg";
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.scss';
 
-export default function Header() {
+function Header() {
     return(
         <nav>
             <div className={styles.header_items}>
                 <div className={styles.logo_container}>
-                    <a href="https://www.tedxcmu.org/" target="_blank">
-                        <Logo className={styles.logo}/>
-                    </a>
+                    <Link to="/">
+                        <img className={styles.logo} src="/tedx-logo.svg" alt="TEDxCMU Logo" />
+                    </Link>
                 </div>
-                <div className={styles.text_link_items} >
-                    <a className={styles.textLinks} href="/">HOME</a>
-                    &#160;  &#160;
-                    <a className={styles.textLinks} href="/about">ABOUT THIS PAGE</a>
+                <div className={styles.text_link_items}>
+                    <Link className={styles.textLinks} to="/about">
+                        ABOUT
+                    </Link>
                 </div>
-                {/* <a href="/">
-                    <h1 className={styles.title}>Story Map</h1>
-                </a> */}
             </div>
         </nav>
     )
 }
+
+export default Header;

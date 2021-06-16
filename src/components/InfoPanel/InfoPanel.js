@@ -1,6 +1,6 @@
 import styles from './InfoPanel.module.scss';
 
-export default function InfoPanel() {
+function InfoPanel() {
     return(
         <div className={styles.info_body}>
             <div className={styles.info_content}>
@@ -11,3 +11,5 @@ export default function InfoPanel() {
         </div>
     )
 }
+
+export default InfoPanel;
