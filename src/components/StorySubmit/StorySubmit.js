@@ -39,7 +39,8 @@ function StorySubmit({ latLong }) {
             story: {
                 text: storyText
             },
-            approved: false
+            approved: false,
+            deleted: false
         });
     };
 
@@ -99,7 +100,7 @@ function StorySubmit({ latLong }) {
                 </>
             )}
             {submitted && (
-                <p className={styles.success}>Submitted successfully! Thank you!</p>
+                <p className={styles.success}>Submitted successfully! You will recieve an email when our team reviews and publishes your story. Thank you!</p>
             )}
         </section>
     );
