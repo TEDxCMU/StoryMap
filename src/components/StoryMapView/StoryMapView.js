@@ -31,11 +31,7 @@ function ClickComponent({ selectionMarker, setSelectionMarker, handleClickOpen }
 
     if (selectionMarker) {
         return (
-            <Marker position={selectionMarker} icon={markerIcon}>
-                {/* <Popup>
-                    <StorySubmit latLong={selectionMarker} />
-                </Popup> */}
-            </Marker>
+            <Marker position={selectionMarker} icon={markerIcon} />
         )
     }
 
@@ -44,7 +40,7 @@ function ClickComponent({ selectionMarker, setSelectionMarker, handleClickOpen }
 
 function StoryMapView() {
     const [allStories, setAllStories] = useState([]);
-    const [selectionMarker, setSelectionMarker] = useState({ lat: 0, lng: 0 });
+    const [selectionMarker, setSelectionMarker] = useState(null);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
