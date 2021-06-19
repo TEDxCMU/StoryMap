@@ -1,5 +1,17 @@
 {
-    "projects": {
-        "default": "tedxcmu-global-narratives"
+  "projects": {
+    "default": "tedxcmu-global-narratives"
+  },
+  "targets": {
+    "tedxcmu-global-narratives": {
+      "hosting": {
+        "dev": [
+          "tedxcmu-global-narratives-dev"
+        ],
+        "production": [
+          "tedxcmu-global-narratives"
+        ]
+      }
     }
+  }
 }
