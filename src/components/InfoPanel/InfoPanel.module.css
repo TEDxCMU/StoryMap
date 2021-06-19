@@ -1,4 +1,7 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 20vh;
     padding: 2rem 8rem;
     text-align: center;
