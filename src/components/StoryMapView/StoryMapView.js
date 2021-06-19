@@ -4,7 +4,7 @@ import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { Dialog, DialogContent } from '@material-ui/core';
 
-import styles from './StoryMapView.module.scss';
+import styles from './StoryMapView.module.css';
 import StoryService from '../../services/story.service';
 import StorySubmit from '../StorySubmit/StorySubmit';
 
@@ -76,7 +76,7 @@ function StoryMapView() {
     };
 
     return (
-        <div className={styles.mapParent}>
+        <div className={styles.container}>
             <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={true}>
                 <ClickComponent
                     selectionMarker={selectionMarker}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
+import cn from 'classnames';
 
-import styles from './AdminConsole.module.scss';
+import styles from './AdminConsole.module.css';
 import { useAuth } from '../../lib/auth-provider';
 import StoryService from "../../services/story.service";
 
@@ -16,7 +17,7 @@ function AdminConsole() {
             return;
         }
 
-        (async function() {
+        (async function () {
             const allData = StoryService.getAll()
             const response = await allData.get();
             const newStories = [];
@@ -32,7 +33,7 @@ function AdminConsole() {
 
     const deleteStory = (id) => {
         const newList = pendingStories.filter((item) => item.id !== id);
-        setPendingStories(newList);      
+        setPendingStories(newList);
         StoryService.delete(id);
     };
 
@@ -43,29 +44,35 @@ function AdminConsole() {
     };
 
     return (
-        <div className={styles.container}>
-            <h1>Admin Console</h1>
-            {pendingStories?.map(({ id, name, email, prompt, story }) => (
-                <div key={id} className={styles.storyBlock}>
-                    <p> 
-                        <b>{name}</b>
-                        <br />
-                        <r>{email}</r>
-                        <br />
-                        <i>{prompt}</i> 
-                        <br />
-                        {story.text}
-                    </p>
-                    <button className={styles.approveButton} onClick={() => approveStory(id)}>
-                        Approve
-                    </button>
-                    <button className={styles.delButton} onClick={() => deleteStory(id)}>
-                        Delete
-                    </button>
-                    <br></br>
-                </div>        
-            ))}
-        </div>
+        <>
+            <h1 className={styles.title}>Admin Dashboard</h1>
+            <section className={styles.stories}>
+                <h2 className={styles.subtitle}>Pending Stories</h2>
+                {pendingStories?.map(({ id, name, email, prompt, story }) => (
+                    <div key={id} className={styles.story}>
+                        <p className={styles.text}>
+                            <i>Name</i>: {name}
+                        </p>
+                        <p className={styles.text}>
+                            <i>Email</i>: {email}
+                        </p>
+                        <p className={styles.text}>
+                            <i>Prompt</i>: {prompt}
+                        </p>
+                        <p className={styles.text}>
+                            <i>Story</i>: {story.text}
+                        </p>
+                        <button className={cn(styles.button, styles.approve)} onClick={() => approveStory(id)}>
+                            Approve
+                        </button>
+                        <button className={cn(styles.button, styles.delete)} onClick={() => deleteStory(id)}>
+                            Delete
+                        </button>
+                        <br></br>
+                    </div>
+                ))}
+            </section>
+        </>
     )
 }
 

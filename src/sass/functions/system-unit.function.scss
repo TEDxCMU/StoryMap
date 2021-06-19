@@ -1,4 +1,0 @@
-// A function to keep all measurements and spacing aligned to the system's standard unit of measurement.
-@function system-unit($number: 1){
-    @return $number * $system__unit;
-}

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import cn from 'classnames';
 
-import styles from './StorySubmit.module.scss';
+import styles from './StorySubmit.module.css';
 import StoryService from '../../services/story.service';
 import prompts from '../../lib/prompts';
 
@@ -43,49 +44,43 @@ function StorySubmit({ latLong }) {
     };
 
     return (
-        <div>
-            <h1>Share Your Story:</h1>
+        <section>
             {!submitted && (
-                <form onSubmit={handleSubmit} className={styles.formBody} id="modal-body">
-                    <div>
-                        <label>
+                <>
+                    <h1 className={styles.title}>Share Your Story:</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label className={styles.label}>
                             Start your story at your selected location: {latLong.lat.toFixed(4)}, {latLong.lng.toFixed(4)}
                         </label>
-                    </div>
-                    <div>
-                        <label htmlFor="name">Name</label>
+                        <label className={styles.label} htmlFor="name">Name</label>
                         <input
+                            className={styles.input}
                             id="name"
                             type="text"
                             onChange={handleName}
                             value={name}
                             required
                         />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
+                        <label className={styles.label} htmlFor="email">Email</label>
                         <input
+                            className={styles.input}
                             id="email"
                             type="text"
                             onChange={handleEmail}
                             value={email}
                             required
                         />
-                    </div>
-
-                    <div>
-                        <label htmlFor="prompt">Choose a prompt:</label>
-                        <select id="prompt" value={prompt} onChange={handlePrompt}>
+                        <label className={styles.label} htmlFor="prompt">Choose a prompt:</label>
+                        <select className={styles.input} id="prompt" value={prompt} onChange={handlePrompt}>
                             {prompts.map((text, index) => (
                                 <option key={index} value={text}>
                                     {text}
                                 </option>
                             ))}
                         </select>
-                    </div>
-                    <div>
-                        <label htmlFor="story">Your Story</label>
+                        <label className={styles.label} htmlFor="story">Your Story</label>
                         <textarea
+                            className={styles.input}
                             id="story"
                             rows="10"
                             cols="30"
@@ -93,22 +88,20 @@ function StorySubmit({ latLong }) {
                             onChange={handleStoryText}
                             required
                         />
-                    </div>
-                    <div>
-                        <input
-                            className={styles.submit}
+                        <button
+                            className={cn(styles.submit, { [styles.disabled]: !(name && storyText && email) })}
                             type="submit"
                             disabled={!(name && storyText && email)}
-                        />
-                    </div>
-                </form>
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </>
             )}
             {submitted && (
-                <div>
-                    <p>Submitted successfully! Thank you!</p>
-                </div>
+                <p className={styles.success}>Submitted successfully! Thank you!</p>
             )}
-        </div>
+        </section>
     );
 }
 

@@ -1,19 +1,14 @@
-import styles from './InfoPanel.module.scss';
+import styles from './InfoPanel.module.css';
 
 function InfoPanel() {
-    return(
-        <div className={styles.info_body}>
-            <div className={styles.info_content}>
-                <p className={styles.info_title}>GLOBAL <span className={styles.info_fancy}>NARRATIVES</span>.</p>
-                <p className={styles.info_text}>
-                    A virtual exploration of Carnegie Mellon's geographic and cultural diversity.
-                    <br/>
-                    <i>Click on markers to see a story.</i>
-                    <br/>
-                    <i>Click on the map to start sharing your story.</i>
-                </p>
-            </div>
-        </div>
+    return (
+        <section className={styles.container}>
+            <p className={styles.title}>GLOBAL <span className={styles.span}>NARRATIVES</span></p>
+            <p className={styles.body}>
+                A virtual exploration of Carnegie Mellon's geographic and cultural diversity.
+                To get started, click on a marker to see a story. To share your story click on any part of the map.
+            </p>
+        </section>
     )
 }
 

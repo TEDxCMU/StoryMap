@@ -1,0 +1,12 @@
+.container {
+    position: static;
+}
+
+.map {
+    height: 80vh;
+    z-index: 0;
+}
+
+.popup {
+    word-wrap: break-word;
+}

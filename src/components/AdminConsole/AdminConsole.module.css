@@ -1,0 +1,60 @@
+.title {
+    padding: 2rem 4rem;
+    font-size: 3rem;
+    font-weight: 400;
+    background-color: #fafafa;
+}
+
+.subtitle {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.stories {
+    padding: 2rem 4rem;
+}
+
+.story {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+}
+
+.text {
+    margin-bottom: 1rem;
+}
+
+.button {
+    padding: 0.8rem 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.approve {
+    background-color: #27ae60;
+    margin-right: 1rem;
+}
+
+.delete {
+    background-color: #e74c3c;
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        padding: 2rem;
+        font-size: 2rem;
+    }
+
+    .stories {
+        padding: 2rem;
+    }
+}
