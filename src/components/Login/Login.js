@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app';
 
+import styles from './Login.module.css';
 import app from '../../firebase';
 import { useAuth } from '../../lib/auth-provider';
-import styles from './Login.module.scss';
 
 function Login() {
     const AuthContext = useAuth();
@@ -39,39 +39,39 @@ function Login() {
     };
 
     return (
-        <main className={styles.login}>
-            <h1>Login</h1>
-            <form className={styles.login__form}>
-                <label className={styles.login__label} htmlFor="email">
+        <>
+            <h1 className={styles.title}>Login</h1>
+            <form className={styles.container}>
+                <label className={styles.label} htmlFor="email">
                     Email
                 </label>
                 <input
-                    className={styles.login__input}
+                    className={styles.input}
                     type="text"
                     name="email"
                     autoComplete="email"
                     value={email}
                     onChange={handleEmail}
                 />
-                <label className={styles.login__label} htmlFor="password">
+                <label className={styles.label} htmlFor="password">
                     Password
                 </label>
                 <input
-                    className={styles.login__input}
+                    className={styles.input}
                     type="password"
                     name="password"
                     autoComplete="password"
                     value={password}
                     onChange={handlePassword}
                 />
-                <button className={styles.login__btn} type="submit" onClick={handleLogin}>
+                <button className={styles.button} type="submit" onClick={handleLogin}>
                     Log In
                 </button>
-                <div className={styles.login__error} role="alert">
+                <div className={styles.error} role="alert">
                     {error && error}
                 </div>
             </form>
-        </main>
+        </>
     );
 }
 
