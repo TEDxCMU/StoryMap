@@ -50,15 +50,11 @@
 }
 
 .delete {
-  background-color: #3c8ce7;
+  background-color: #e74c3c;
 }
 
 .pending {
   background-color: #3c3fe7;
-}
-
-.remove {
-  background-color: #e74c3c;
 }
 
 @media screen and (max-width: 768px) {

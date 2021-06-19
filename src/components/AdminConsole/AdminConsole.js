@@ -37,12 +37,6 @@ function AdminConsole() {
         })();
     }, [history, AuthContext]);
 
-    const removeStory = (id) => {
-        const newList = deletedStories.filter((item) => item.id !== id);
-        setDeletedStories(newList);
-        StoryService.delete(id);
-    };
-
     const pendStory = (id) => {
         const delList = deletedStories.filter((item) => item.id !== id);
         const addToPen = deletedStories.filter((item) => item.id === id);
@@ -115,9 +109,6 @@ function AdminConsole() {
                         </p>
                         <button className={cn(styles.button, styles.pending)} onClick={() => pendStory(id)}>
                             Move To Pending
-                        </button>
-                        <button className={cn(styles.button, styles.remove)} onClick={() => removeStory(id)}>
-                            Remove
                         </button>
                         <br></br>
                     </div>
