@@ -3,13 +3,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const config = {
-    apiKey: 'AIzaSyCktWBWGtDfrwRaXpEUi9jD20_LWxDiD0g',
-    authDomain: 'tedxcmu-global-narratives.firebaseapp.com',
-    databaseURL: 'https://tedxcmu-firebase.firebaseio.com',
-    projectId: 'tedxcmu-global-narratives',
-    storageBucket: 'tedxcmu-global-narratives.appspot.com',
-    messagingSenderId: '703306085648',
-    appId: '1:703306085648:web:6962b3f57df280145b6195',
+    apiKey: 'AIzaSyAtWvUboy3eIdTnFtxTB8oIYqpSN2hsFRw',
+    authDomain: 'tedxcmu-narratives.firebaseapp.com',
+    databaseURL: 'https://tedxcmu-narratives.firebaseio.com',
+    projectId: 'tedxcmu-narratives',
+    storageBucket: 'tedxcmu-narratives.appspot.com',
+    messagingSenderId: '1014665372052',
+    appId: '1:1014665372052:web:fe5ec8b36117780b3eaf81',
 };
 
 export default firebase.default.initializeApp(config);

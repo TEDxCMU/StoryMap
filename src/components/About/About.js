@@ -9,7 +9,7 @@ function About() {
                     About
                 </h1>
                 <p className={styles.text}>
-                    StoryMap is a joint venture by TEDxCMU Innovation and TEDxCMU Salon.
+                    Global Narratives is a joint venture by TEDxCMU Innovation and TEDxCMU Salon.
                 </p>
             </section>
             <section className={styles.block}>
