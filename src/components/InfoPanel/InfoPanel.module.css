@@ -1,6 +1,7 @@
 .container {
-    text-align: center;
+    height: 20vh;
     padding: 2rem 8rem;
+    text-align: center;
     background-color: #fafafa;
 }
 
