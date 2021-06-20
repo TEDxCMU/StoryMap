@@ -5,10 +5,13 @@ import cn from 'classnames';
 import styles from './AdminConsole.module.css';
 import { useAuth } from '../../lib/auth-provider';
 import StoryService from "../../services/story.service";
+import PromptService from "../../services/prompt.service";
 
 function AdminConsole() {
     const AuthContext = useAuth();
     const history = useHistory();
+    const [prompts, setPrompts] = useState([]);
+    const [customPrompt, setCustomPrompt] = useState([]);
     const [pendingStories, setPendingStories] = useState([]);
     const [deletedStories, setDeletedStories] = useState([]);
 
@@ -34,6 +37,17 @@ function AdminConsole() {
             });
             setPendingStories(penStories);
             setDeletedStories(delStories);
+        })();
+
+        (async function () {
+            const allPrompts = PromptService.getAll()
+            const response = await allPrompts.get();
+            const newPrompts = [];
+            response.docs.forEach((doc) => {
+                const data = doc.data();
+                newPrompts.push(data.text)
+            });
+            setPrompts(newPrompts);
         })();
     }, [history, AuthContext]);
 
@@ -63,10 +77,51 @@ function AdminConsole() {
         StoryService.update(id, { approved: true, deleted: false });
     };
 
+    const handleCustomPrompt = (event) => {
+        setCustomPrompt(event.target.value);
+    };
+
+    const addCustomPrompt = (event) => {
+        event.preventDefault();
+        let newPrompts = prompts;
+        newPrompts.push(customPrompt);
+        PromptService.add({
+            text: customPrompt
+        });
+        setCustomPrompt("");
+        setPrompts(newPrompts);
+    };
+
     return (
         <>
             <h1 className={styles.title}>Admin <span className={styles.span}>DASHBOARD</span></h1>
-            <section className={styles.stories}>
+            <section className={styles.container}>
+                <h2 className={styles.subtitle_top}>Add Prompts</h2>
+                <p>Change/Delete options coming soon.</p>
+                <div>
+                    <ul className={styles.promptSpace}>
+                    {prompts?.map((text, index) => (
+                        <li key={index}>
+                            <p>{text}</p>
+                        </li>
+                    ))}
+                    </ul>
+                    <form onSubmit={addCustomPrompt}>
+                        <input
+                            className={styles.input}
+                            id="customPrompt"
+                            type="text"
+                            placeholder="Enter new prompt here"
+                            onChange={handleCustomPrompt}
+                            value={customPrompt}
+                            required
+                        />
+                        <button className={cn(styles.button, styles.prompt)} disabled={!customPrompt}>
+                            Add Prompt
+                        </button>
+                    </form>
+                </div>
+
                 <h2 className={styles.subtitle}>Pending Stories</h2>
                 {pendingStories?.map(({ id, name, email, prompt, story }) => (
                     <div key={id} className={styles.story}>

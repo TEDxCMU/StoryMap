@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cn from 'classnames';
 
 import styles from './StorySubmit.module.css';
+import PromptService from '../../services/prompt.service';
 import StoryService from '../../services/story.service';
-import prompts from '../../lib/prompts';
 
 function StorySubmit({ latLong }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [prompt, setPrompt] = useState(prompts[0]);
+    const [prompt, setPrompt] = useState('');
+    const [prompts, setPrompts] = useState([]);
     const [storyText, setStoryText] = useState('');
     const [submitted, setSubmitted] = useState('');
+
+
+    useEffect(() => {
+        (async function () {
+            const allPrompts = PromptService.getAll()
+            const response = await allPrompts.get();
+            const newPrompts = [];
+            response.docs.forEach((doc) => {
+                const data = doc.data();
+                newPrompts.push(data.text)
+            });
+            setPrompts(newPrompts);
+        })();
+    });
 
     const handleName = (event) => {
         setName(event.target.value);
