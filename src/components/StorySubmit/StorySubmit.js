@@ -23,6 +23,7 @@ function StorySubmit({ latLong }) {
                 const data = doc.data();
                 newPrompts.push(data.text)
             });
+            setPrompt(newPrompts[0]);
             setPrompts(newPrompts);
         })();
     });
