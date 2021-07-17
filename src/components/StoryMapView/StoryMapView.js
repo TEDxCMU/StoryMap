@@ -25,7 +25,9 @@ function ClickComponent({ selectionMarker, setSelectionMarker, handleClickOpen }
         click(e) {
             const { lat, lng } = e.latlng;
             setSelectionMarker({ lat, lng });
-            handleClickOpen(true);
+            setTimeout(() => {
+                handleClickOpen(true);
+            }, 300);
         },
     });
 
