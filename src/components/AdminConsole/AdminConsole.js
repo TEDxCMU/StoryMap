@@ -17,7 +17,7 @@ function AdminConsole() {
 
     useEffect(() => {
         if (!AuthContext.user) {
-            history.push("/login");
+            history.push('/login');
             return;
         }
 
@@ -51,15 +51,15 @@ function AdminConsole() {
         })();
     }, [history, AuthContext]);
 
-    const pendStory = (id) => {
-        const delList = deletedStories.filter((item) => item.id !== id);
-        const addToPen = deletedStories.filter((item) => item.id === id);
-        let penList = pendingStories;
-        penList = penList.concat(addToPen);
-        setPendingStories(penList);
-        setDeletedStories(delList);
-        StoryService.update(id, { approved: false, deleted: false });
-    };   
+    // const pendStory = (id) => {
+    //     const delList = deletedStories.filter((item) => item.id !== id);
+    //     const addToPen = deletedStories.filter((item) => item.id === id);
+    //     let penList = pendingStories;
+    //     penList = penList.concat(addToPen);
+    //     setPendingStories(penList);
+    //     setDeletedStories(delList);
+    //     StoryService.update(id, { approved: false, deleted: false });
+    // };
 
     const deleteStory = (id) => {
         const penList = pendingStories.filter((item) => item.id !== id);
@@ -100,11 +100,11 @@ function AdminConsole() {
                 <p>Change/Delete options coming soon.</p>
                 <div>
                     <ul className={styles.promptSpace}>
-                    {prompts?.map((text, index) => (
-                        <li key={index}>
-                            <p>{text}</p>
-                        </li>
-                    ))}
+                        {prompts?.map((text, index) => (
+                            <li key={index}>
+                                <p>{text}</p>
+                            </li>
+                        ))}
                     </ul>
                     <form onSubmit={addCustomPrompt}>
                         <input
@@ -141,13 +141,13 @@ function AdminConsole() {
                             Approve
                         </button>
                         <button className={cn(styles.button, styles.delete)} onClick={() => deleteStory(id)}>
-                            Delete
+                            Deny
                         </button>
                         <br></br>
                     </div>
                 ))}
 
-                <h2 className={styles.subtitle}>Deleted Stories</h2>
+                <h2 className={styles.subtitle}>Denied Stories</h2>
                 {deletedStories?.map(({ id, name, email, prompt, story }) => (
                     <div key={id} className={styles.story}>
                         <p className={styles.text}>
@@ -162,10 +162,6 @@ function AdminConsole() {
                         <p className={styles.text}>
                             <i>Story</i> : {story.text}
                         </p>
-                        <button className={cn(styles.button, styles.pending)} onClick={() => pendStory(id)}>
-                            Move To Pending
-                        </button>
-                        <br></br>
                     </div>
                 ))}
             </section>
