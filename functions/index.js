@@ -5,7 +5,7 @@ const serviceAccount = require('./config/tedxcmu-narratives.json');
 try {
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
-        databaseURL: 'https://tedxcmu-narratives.firebaseio.com'
+        databaseURL: 'https://tedxcmu-narratives-default-rtdb.firebaseio.com'
     });
 } catch (err) {
     console.error(err);
