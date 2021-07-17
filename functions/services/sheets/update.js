@@ -23,5 +23,5 @@ module.exports = async (change, context) => {
         ]);
     }
 
-    return;
+    return Promise.resolve(0);
 };

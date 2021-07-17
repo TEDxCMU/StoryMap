@@ -21,5 +21,5 @@ module.exports = async (snapshot, context) => {
         'PENDING'
     ]);
 
-    return;
+    return Promise.resolve(0);
 };
