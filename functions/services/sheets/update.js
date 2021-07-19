@@ -1,7 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const serviceAccount = require('../../config/tedxcmu-narratives.json');
 
-const document = new GoogleSpreadsheet('1-Ei_YyqTYnRngVS9po_fcxaPer-5JyOmU989_li0mCs');
+const document = new GoogleSpreadsheet('1HqvhQan7laZKs9Ou-aoZ9PstC6TdSjQeL4HuVfRnL2w');
 
 module.exports = async (change, context) => {
     const previousValue = change.before.data();

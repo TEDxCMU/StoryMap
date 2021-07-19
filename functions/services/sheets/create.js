@@ -1,7 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const serviceAccount = require('../../config/tedxcmu-narratives.json');
 
-const document = new GoogleSpreadsheet('1-Ei_YyqTYnRngVS9po_fcxaPer-5JyOmU989_li0mCs');
+const document = new GoogleSpreadsheet('1HqvhQan7laZKs9Ou-aoZ9PstC6TdSjQeL4HuVfRnL2w');
 
 // Shell Teast: sheets.create({ name: 'Kazi', email: 'kazi.a.jawad@gmail.com', prompt: 'Hi!', story: { text: 'Test' }, latLong: { lat: 44.8745685296278, lng: -101.02407217025758 } });
 module.exports = async (snapshot, context) => {
