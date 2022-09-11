@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import { Dialog, DialogContent } from '@material-ui/core';
 
 import styles from './StoryMapView.module.css';
@@ -18,7 +18,7 @@ const markerIcon = L.icon({
     popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
 });
 
-const position = [40.4, -79.9];
+const position = [40.442, -79.942];
 
 function ClickComponent({ selectionMarker, setSelectionMarker, handleClickOpen }) {
     useMapEvents({
@@ -75,7 +75,7 @@ function StoryMapView() {
 
     return (
         <div className={styles.container}>
-            <MapContainer className={styles.map} center={position} zoom={3} scrollWheelZoom={true}>
+            <MapContainer className={styles.map} center={position} zoom={16} scrollWheelZoom={true}>
                 <ClickComponent
                     selectionMarker={selectionMarker}
                     setSelectionMarker={setSelectionMarker}
@@ -83,7 +83,7 @@ function StoryMapView() {
                 />
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
                 />
                 <MarkerClusterGroup>
                     {allStories?.map(({ id, name, prompt, story, latLong }) => (
