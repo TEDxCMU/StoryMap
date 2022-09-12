@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { Dialog, DialogContent } from '@material-ui/core';
 
 import styles from './StoryMapView.module.css';
