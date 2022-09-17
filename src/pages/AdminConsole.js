@@ -7,7 +7,6 @@ function AdminConsolePage() {
         <>
             <Header />
             <AdminConsole />
-            <Footer />
         </>
     );
 }

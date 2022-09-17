@@ -9,7 +9,6 @@ function HomePage() {
             <Header />
             <InfoPanel />
             <StoryMapView />
-            <Footer />
         </>
     );
 }
