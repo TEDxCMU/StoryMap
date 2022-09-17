@@ -97,7 +97,6 @@ function AdminConsole() {
             <h1 className={styles.title}>Admin <span className={styles.span}>DASHBOARD</span></h1>
             <section className={styles.container}>
                 <h2 className={styles.subtitle_top}>Add Prompts</h2>
-                <p>Change/Delete options coming soon.</p>
                 <div>
                     <ul className={styles.promptSpace}>
                         {prompts?.map((text, index) => (
