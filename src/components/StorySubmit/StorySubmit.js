@@ -26,7 +26,7 @@ function StorySubmit({ latLong }) {
             setPrompt(newPrompts[0]);
             setPrompts(newPrompts);
         })();
-    });
+    }, []);
 
     const handleName = (event) => {
         setName(event.target.value);

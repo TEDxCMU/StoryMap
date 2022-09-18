@@ -86,17 +86,18 @@ function StoryMapView() {
                     url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
                 />
                 <MarkerClusterGroup>
-                    {allStories?.map(({ id, name, prompt, story, latLong }) => (
+                    {allStories?.map(({ id, name, prompt, story, latLong }) => {
+                      console.log(name, name !== "");
+                      return (
                         <Marker key={id} position={latLong} icon={markerIcon}>
                             <Popup className={styles.popup}>
-                                <b>{name}</b>
-                                <br />
+                                {(name && name !== "") ? <b>{name}<br /></b> : ""}
                                 <i>{prompt}</i>
                                 <br />
                                 {story.text}
                             </Popup>
                         </Marker>
-                    ))}
+                    )})}
                 </MarkerClusterGroup>
             </MapContainer>
             <Dialog open={open} onClose={handleClose}>
