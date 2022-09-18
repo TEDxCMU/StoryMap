@@ -89,8 +89,7 @@ function StoryMapView() {
                     {allStories?.map(({ id, name, prompt, story, latLong }) => (
                         <Marker key={id} position={latLong} icon={markerIcon}>
                             <Popup className={styles.popup}>
-                                <b>{name}</b>
-                                <br />
+                                {(name && name !== "") ? <b>{name}<br /></b> : ""}
                                 <i>{prompt}</i>
                                 <br />
                                 {story.text}
