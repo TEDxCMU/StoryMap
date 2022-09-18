@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 
 import AuthProvider from './lib/auth-provider';
 import HomePage from './pages/Home';
@@ -8,30 +8,29 @@ import AboutPage from './pages/About';
 import Footer from './components/Footer/Footer'
 
 function App() {
+  const location = useLocation();
     return (
-        <BrowserRouter>
-            <AuthProvider>
-                <div className="App">
-                    <div className="content">
-                    <Switch>
-                        <Route path="/" exact>
-                            <HomePage />
-                        </Route>
-                        <Route path="/admin" exact>
-                            <AdminConsolePage />
-                        </Route>
-                        <Route path="/login" exact>
-                            <LoginPage />
-                        </Route>
-                        <Route path="/about" exact>
-                            <AboutPage />
-                        </Route>
-                    </Switch>
-                    </div>
-                    <Footer />
+        <AuthProvider>
+            <div className="App">
+                <div className="content">
+                <Switch location={location} key={location.pathname}>
+                    <Route path="/" exact>
+                        <HomePage />
+                    </Route>
+                    <Route path="/admin" exact>
+                        <AdminConsolePage />
+                    </Route>
+                    <Route path="/login" exact>
+                        <LoginPage />
+                    </Route>
+                    <Route path="/about" exact>
+                        <AboutPage />
+                    </Route>
+                </Switch>
                 </div>
-            </AuthProvider>
-        </BrowserRouter>
+                <Footer />
+            </div>
+        </AuthProvider>
     );
 
 }
