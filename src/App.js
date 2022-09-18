@@ -5,12 +5,14 @@ import HomePage from './pages/Home';
 import AdminConsolePage from "./pages/AdminConsole";
 import LoginPage from './pages/Login';
 import AboutPage from './pages/About';
+import Footer from './components/Footer/Footer'
 
 function App() {
     return (
         <BrowserRouter>
             <AuthProvider>
                 <div className="App">
+                    <div className="content">
                     <Switch>
                         <Route path="/" exact>
                             <HomePage />
@@ -25,6 +27,8 @@ function App() {
                             <AboutPage />
                         </Route>
                     </Switch>
+                    </div>
+                    <Footer />
                 </div>
             </AuthProvider>
         </BrowserRouter>
