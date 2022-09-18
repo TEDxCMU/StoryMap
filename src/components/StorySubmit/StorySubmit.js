@@ -69,14 +69,13 @@ function StorySubmit({ latLong }) {
                         <label className={styles.label}>
                             Start your story at your selected location: {latLong.lat.toFixed(4)}, {latLong.lng.toFixed(4)}
                         </label>
-                        <label className={styles.label} htmlFor="name">Name</label>
+                        <label className={styles.label} htmlFor="name">Name (optional)</label>
                         <input
                             className={styles.input}
                             id="name"
                             type="text"
                             onChange={handleName}
                             value={name}
-                            required
                         />
                         <label className={styles.label} htmlFor="email">Email</label>
                         <input
@@ -106,9 +105,9 @@ function StorySubmit({ latLong }) {
                             required
                         />
                         <button
-                            className={cn(styles.submit, { [styles.disabled]: !(name && storyText && email) })}
+                            className={cn(styles.submit, { [styles.disabled]: !(storyText && email) })}
                             type="submit"
-                            disabled={!(name && storyText && email)}
+                            disabled={!(storyText && email)}
                         >
                             Submit
                         </button>
