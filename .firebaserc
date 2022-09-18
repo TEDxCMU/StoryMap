@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "tedxcmu-narratives"
+  },
+  "targets": {
+    "tedxcmu-narratives": {
+      "hosting": {
+        "dev": [
+          "tedxcmu-narratives-dev"
+        ],
+        "production": [
+          "tedxcmu-narratives"
+        ]
+      }
+    }
+  }
+}
