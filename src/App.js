@@ -17,6 +17,9 @@ function App() {
                     <Route path="/" exact>
                         <HomePage />
                     </Route>
+                    <Route path="/close" exact>
+                        <HomePage />
+                    </Route>
                     <Route path="/admin" exact>
                         <AdminConsolePage />
                     </Route>

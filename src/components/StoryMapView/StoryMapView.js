@@ -69,7 +69,7 @@ function StoryMapView() {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (e) => {
         setOpen(false);
     };
 
