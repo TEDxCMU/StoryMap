@@ -77,7 +77,7 @@ function StorySubmit({ latLong }) {
                             onChange={handleName}
                             value={name}
                         />
-                        <label className={styles.label} htmlFor="email">Email</label>
+                        <label className={styles.label} htmlFor="email">Email (only used for email confirmation purposes)</label>
                         <input
                             className={styles.input}
                             id="email"
