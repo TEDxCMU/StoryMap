@@ -21,7 +21,7 @@ function StorySubmit({ latLong }) {
             const newPrompts = [];
             response.docs.forEach((doc) => {
                 const data = doc.data();
-                newPrompts.push(data.text)
+                newPrompts.push(data.text);
             });
             setPrompt(newPrompts[0]);
             setPrompts(newPrompts);
